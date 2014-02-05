@@ -21,3 +21,8 @@ alias rm='rm -I'                    # 'rm -i' prompts for every file
 alias ln='ln -i'
 alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
 # }}}
+
+# My aliases (aliai? Alieeses?) {{{
+alias q='exit'
+alias :q='exit'
+# }}}

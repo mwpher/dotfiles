@@ -20,7 +20,7 @@ Bundle 'tpope/vim-unimpaired'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'nathanaelkane/vim-indent-guides' 
 Bundle 'bling/vim-airline'
-Bundle 'edkolev/tmuxline.vim'
+" Bundle 'edkolev/tmuxline.vim'
 
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -30,8 +30,6 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 
 filetype plugin indent on     " required!
-
-let g:tmuxline_preset = 'tmux'
 
 "
 " Brief help
