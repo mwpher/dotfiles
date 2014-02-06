@@ -1,16 +1,5 @@
 # DEBUG #echo 'sourced $HOME/.bashrc'
 
-# TMUX {{{
-if which tmux 2>&1 >/dev/null; then
-#if not inside a tmux session, and if no session is started, start a new session
-    test -z "$TMUX" && (tmux attach || tmux new-session)
-
-    # when quitting tmux, try to attach
-    while test -z ${TMUX}; do
-        tmux attach || break
-    done
-fi
-# }}}
 
 ## Safety features ## {{{
 alias cp='cp -i'
@@ -22,7 +11,19 @@ alias ln='ln -i'
 alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
 # }}}
 
-# My aliases (aliai? Alieeses?) {{{
+# My aliases {{{
 alias q='exit'
 alias :q='exit'
+# }}}
+
+# TMUX {{{
+if which tmux 2>&1 >/dev/null; then
+#if not inside a tmux session, and if no session is started, start a new session
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+
+    # when quitting tmux, try to attach
+    while test -z ${TMUX}; do
+        tmux attach || break
+    done
+fi
 # }}}
