@@ -152,3 +152,5 @@ set laststatus=2
 " colours)
 set t_Co=256
 
+" Enable auto folding
+set foldmethod=marker
