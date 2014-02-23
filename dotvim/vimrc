@@ -161,3 +161,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Enable line numbers
 set nu
+
+" Make vim recognize .md as markdown
+au BufRead,BufNewFile *.md set filetype=markdown
