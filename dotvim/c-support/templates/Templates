@@ -1,0 +1,33 @@
+§ ==========================================================
+§  User Macros
+§ ==========================================================
+
+|AUTHOR|	= Matthew Pherigo
+|AUTHORREF|	= mwp
+|COPYRIGHT|	= Copyright (c) |YEAR|, |AUTHOR|
+|EMAIL|		= hybrid120@gmail.com
+|LICENSE|	= BSD 2-Clause License
+
+SetStyle( 'C' )
+
+§ ==========================================================
+§  File Includes and Shortcuts
+§ ==========================================================
+
+MenuShortcut( 'Comments',     'c' )
+MenuShortcut( 'Statements',   's' )
+MenuShortcut( 'Idioms',       'i' )
+MenuShortcut( 'Preprocessor', 'p' )
+MenuShortcut( 'Snippets',     'n' )
+MenuShortcut( 'C++',          'c' )
+§
+IncludeFile( 'snippets.template'     )
+§
+== USE STYLES : C ==
+IncludeFile( 'c.comments.template'     )
+IncludeFile( 'c.cpp.template'          )
+IncludeFile( 'c.idioms.template'       )
+IncludeFile( 'c.preprocessor.template' )
+IncludeFile( 'c.statements.template'   )
+== ENDSTYLES ==
+
