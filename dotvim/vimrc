@@ -34,13 +34,14 @@ Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
 Bundle "garbas/vim-snipmate"
 
-Bundle 'tigerlee/c.vim'
-
 Bundle "honza/vim-snippets"
+
+Bundle "mwpher/c.vim"
 
 Bundle 'delimitMate.vim'
 
 filetype plugin indent on     " required!
+syntax on
 
 "
 " Brief help
@@ -115,9 +116,6 @@ set foldcolumn=1
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Enable syntax highlighting
-syntax enable 
-
 try
     colorscheme desert
 catch
@@ -183,5 +181,11 @@ nnoremap <C-H> <C-W><C-H>
 " Longer timeout
 set timeoutlen=4000
 
-let g:C_CCompiler="clang"
-
+" c.vim settings
+let g:C_CCompiler='clang'
+" strict compiler settings
+let g:C_CFlags='-Weverything -Wno-unused-parameter -std=c99 -g -O0 -v'
+let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -g -O0 -v'
+" libraries
+let g:C_Libs='-lcs50 -lm'
+let g:C_CplusLibs='-lcs50 -lm'
