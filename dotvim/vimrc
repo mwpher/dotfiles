@@ -167,8 +167,20 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 " Enable line numbers
 set nu
 
+"""""""""""""""""
+" => My tweaks  "
+"""""""""""""""""
+
+"""""""""""""""""
+" Tab settings
+"""""""""""""""""
+au BufRead,BufNewFile *.c set expandtab tabstop=4 shiftwidth=4
+
 " Make vim recognize .md as markdown
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" force .h files to be C, not CPP
+au BufRead,BufNewFile *.h set filetype=c
 
 " Automatically set working directory
 set autochdir
@@ -184,8 +196,22 @@ set timeoutlen=4000
 " c.vim settings
 let g:C_CCompiler='clang'
 " strict compiler settings
-let g:C_CFlags='-Weverything -Wno-unused-parameter -std=c99 -g -O0 -v'
-let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -g -O0 -v'
+let g:C_CFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v -c -i/home/matt/MyProjects/MattLib'
+let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v -i/home/matt/MyProjects/MattLib'
 " libraries
-let g:C_Libs='-lcs50 -lm'
+let g:C_Libs='-lcs50 -lm -L/home/matt/MyProjects/MattLib -lmatt'
 let g:C_CplusLibs='-lcs50 -lm'
+
+" Auto-reload vimrc
+augroup myvimrc
+    au!
+    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+augroup END
+
+" easy tab switching and rearranging
+nnoremap <C-Left> :tabprevious<CR>
+nnoremap <C-Right> :tabnext<CR>
+nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
+nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+
+
