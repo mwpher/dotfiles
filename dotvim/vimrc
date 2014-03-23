@@ -40,6 +40,9 @@ Bundle "mwpher/c.vim"
 
 Bundle 'delimitMate.vim'
 
+Bundle "scrooloose/syntastic"
+Bundle "zah/nimrod.vim"
+
 filetype plugin indent on     " required!
 syntax on
 
@@ -175,6 +178,7 @@ set nu
 " Tab settings
 """""""""""""""""
 au BufRead,BufNewFile *.c set expandtab tabstop=4 shiftwidth=4
+au BufRead,BufNewFile Makefile,makefile,*.mk set noexpandtab tabstop=4 shiftwidth=4
 
 " Make vim recognize .md as markdown
 au BufRead,BufNewFile *.md set filetype=markdown
@@ -196,10 +200,10 @@ set timeoutlen=4000
 " c.vim settings
 let g:C_CCompiler='clang'
 " strict compiler settings
-let g:C_CFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v -c -i/home/matt/MyProjects/MattLib'
-let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v -i/home/matt/MyProjects/MattLib'
+let g:C_CFlags='-Weverything -Wno-unused-parameter -Wno-vla -std=c99 -ggdb3 -O0 -v -c'
+let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v'
 " libraries
-let g:C_Libs='-lcs50 -lm -L/home/matt/MyProjects/MattLib -lmatt'
+let g:C_Libs='-lcs50 -lm -lmatt -lcrypt'
 let g:C_CplusLibs='-lcs50 -lm'
 
 " Auto-reload vimrc
@@ -214,4 +218,14 @@ nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
 
-
+" Stuff for nimrod.vim
+fun! JumpToDef()
+  if exists("*GotoDefinition_" . &filetype)
+    call GotoDefinition_{&filetype}()
+  else
+    exe "norm! \<C-]>"
+  endif
+endf
+" Jump to tag
+nn <M-g> :call JumpToDef()<cr>
+ino <M-g> <esc>:call JumpToDef()<cr>i
