@@ -1,11 +1,5 @@
 # DEBUG #echo 'sourced $HOME/.bashrc'
 
-# C vars {{{
-export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
-export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
-export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
-# }}}
-
 ## Safety features ## {{{
 alias cp='cp -i'
 alias mv='mv -i'
