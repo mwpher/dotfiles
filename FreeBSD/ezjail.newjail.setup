@@ -1,13 +1,13 @@
 #!/bin/sh
 #
 # BEFORE: DAEMON
-# PROVIDE: ezjail.newjail.config
+# PROVIDE: ezjail.newjail.setup
 #
 # ezjail flavour newjail
 
 . /etc/rc.subr
 
-name=ezjail.flavour.newjail
+name=ezjail.newjail.setup
 start_cmd=flavour_setup
 
 flavour_setup() {
