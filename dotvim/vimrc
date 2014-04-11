@@ -211,8 +211,8 @@ set timeoutlen=4000
 " c.vim settings
 let g:C_CCompiler='clang'
 " strict compiler settings
-let g:C_CFlags='-Weverything -Wno-unused-parameter -Wno-vla -std=c99 -ggdb3 -O0 -v -c'
-let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0 -v'
+let g:C_CFlags='-Weverything -Wno-unused-parameter -Wno-vla -std=c99 -ggdb3 -O0 -c'
+let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0'
 " libraries
 let g:C_Libs='-lcs50 -lm -lmatt -lcrypt'
 let g:C_CplusLibs='-lcs50 -lm'
