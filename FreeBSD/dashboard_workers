@@ -1,0 +1,43 @@
+#!/bin/sh
+
+# PROVIDE: dashboard_workers
+# REQUIRE: LOGIN
+# KEYWORD: shutdown
+
+# By default dashboard_workers uses flags '-n 1' for 1 worker.  This should be 
+# adjusted to the number of CPU cores.
+dashboard_workers_enable=${dashboard_workers_enable:-"NO"}
+dashboard_workers_flags=${dashboard_workers_flags:-"-n 2"}
+# The default rails environment is set to production
+dashboard_workers_env=${dashboard_workers_env:-"/usr/bin/env PATH=${PATH}:/usr/local/bin RAILS_ENV=production"}
+# The default user is set to puppet-dashboard and install location is set to
+# /usr/local/share/puppet-dashboard.
+dashboard_workers_user=${dashboard_workers_user:-"puppet-dashboard"}
+dashboard_workers_chdir=${dashboard_workers_chdir:-"/usr/local/share/puppet-dashboard"}
+
+. /etc/rc.subr
+
+name="dashboard_workers"
+rcvar="dashboard_workers_enable"
+load_rc_config $name
+extra_commands="reload run zap status"
+
+# All commands call the same function and strip the fast|one|quiet prefix
+# to deliver to the bundler.
+reload_cmd="f_dashboard_workers reload"
+restart_cmd="f_dashboard_workers restart"
+run_cmd="f_dashboard_workers run"
+start_cmd="f_dashboard_workers start"
+status_cmd="f_dashboard_workers status"
+stop_cmd="f_dashboard_workers stop"
+zap_cmd="f_dashboard_workers zap"
+
+# Use the function's ARVG $1 as the bundler program's '-m' flag
+f_dashboard_workers() {
+    cd $dashboard_workers_chdir && \
+    su -m "$dashboard_workers_user" \
+        -c "${dashboard_workers_env} bundle exec script/delayed_job ${rc_flags} -p dashboard -m $1" || \
+    echo "Failed to $1 dashboard_workers"
+}
+
+run_rc_command "$1"
