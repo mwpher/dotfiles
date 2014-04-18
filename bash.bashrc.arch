@@ -1,0 +1,97 @@
+#
+# /etc/bash.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# If id command returns zero, you've root access.
+if [ $(id -u) -eq 0 ];
+then # you are root, set red colour prompt
+  PS1="\\[$(tput setaf 1)\\]\u@\h: \w $(tput sgr0)\\]# "
+else # normal
+  PS1="\u@\h: \w \$ "
+fi
+
+case ${TERM} in
+  xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+                                                        
+    ;;
+  screen)
+    PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
+    ;;
+esac
+
+[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+
+# TMUX
+if which tmux 2>&1 >/dev/null; then
+#if not inside a tmux session, and if no session is started, start a new session
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+
+    # when quitting tmux, try to attach
+    while test -z ${TMUX}; do
+        tmux attach || break
+    done
+fi
+
+## Safety features ## {{{
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+# safer alternative w/ timeout, not stored in history
+# alias rm=' timeout 3 rm -Iv --one-file-system'
+alias ln='ln -i'
+alias chown='chown --preserve-root'
+alias chmod='chmod --preserve-root'
+alias chgrp='chgrp --preserve-root'
+alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
+# }}}
+
+# Custom command to list all packages not in base or base-devel
+alias installed='comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)'
+
+#Use pacmatic instead of pacman
+alias pacman='pacmatic'
+
+#more informative look command
+alias l='ls -lhAF --color'
+
+#replacing vi with vim
+alias vi='vim'
+
+# Calculator
+calc() {
+    echo “scale=3;$@” | bc -l
+}
+# Archive Extractor
+extract() {
+    local c e i
+    (($#)) || return
+    for i; do
+        c=”
+        e=1
+        if [[ ! -r $i ]]; then
+            echo “$0: file is unreadable: \`$i’” >&2
+            continue
+        fi
+        case $i in
+            *.t@(gz|lz|xz|b@(2|z?(2))|a@(z|r?(.@(Z|bz?(2)|gz|lzma|xz)))))
+                   c=’bsdtar xvf’;;
+            *.7z)  c=’7z x’;;
+            *.Z)   c=’uncompress’;;
+            *.bz2) c=’bunzip2′;;
+            *.exe) c=’cabextract’;;
+            *.gz)  c=’gunzip’;;
+            *.rar) c=’unrar x’;;
+            *.xz)  c=’unxz’;;
+            *.zip) c=’unzip’;;
+            *)     echo “$0: unrecognized file extension: \`$i’” >&2
+                   continue;;
+        esac
+        command $c “$i”
+        e=$?
+    done
+    return $e
+  }
