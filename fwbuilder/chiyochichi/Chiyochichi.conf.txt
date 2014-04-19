@@ -1,0 +1,70 @@
+
+set optimization normal
+
+#
+# Scrub rules
+#
+scrub all reassemble tcp
+scrub out all random-id
+
+
+# Tables: (1)
+table <tbl.r0.s> { 10.0.0.0/8 , 127.0.0.0/8 , 172.16.0.0/12 , 192.168.0.0/16 } 
+
+# 
+# Rule  0 (NAT)
+# Keep SSH only to host
+no nat on  vtnet0 proto tcp from any to 198.23.187.239 
+no rdr on  vtnet0 proto tcp from any to 198.23.187.239 
+# 
+# Rule  1 (NAT)
+# Keep inter-jail communication in itself
+no nat on  lo1 from 10.0.0.0/8 to 10.0.0.0/8 
+no rdr on  lo1 from 10.0.0.0/8 to 10.0.0.0/8 
+# 
+# Rule  2 (NAT)
+# If jails try to communicate to the internet, NAT to public IP
+nat on  lo1 from 10.0.0.0/8 to any -> (vtnet0) 
+
+# 
+# Rule  0 (vtnet0)
+# Antispoofing measures
+block in   log  quick on vtnet0 inet  from self  to any  label "RULE 0 -- DROP "  
+block in   log  quick on vtnet0 inet  from <tbl.r0.s>  to any  label "RULE 0 -- DROP "  
+# 
+# Rule  1 (lo0)
+# No blocking on the loopback
+pass  quick on lo0 inet  from any  to any keep state  label "RULE 1 -- ACCEPT "  
+# 
+# Rule  2 (vtnet0)
+# Allow/log SSH to host, DenyHosts will handle bruteforce blocking
+pass  quick on vtnet0 inet proto tcp  from any  to 198.23.187.239 port 22 flags S/SA keep state  label "RULE 2 -- ACCEPT "  
+# 
+# Rule  3 (lo1)
+# Allow communication from jails to host
+pass  quick on lo1 inet  from 10.0.0.0/8  to 10.0.0.1 keep state  label "RULE 3 -- ACCEPT "  
+# 
+# Rule  4 (lo1)
+# Allow communication from host to jails
+pass  quick on lo1 inet  from 10.0.0.1  to 10.0.0.0/8 keep state  label "RULE 4 -- ACCEPT "  
+# 
+# Rule  5 (lo1)
+# Default deny inter-jail communication
+block  quick on lo1 inet  from 10.0.0.0/8  to 10.0.0.0/8  label "RULE 5 -- DROP "  
+# 
+# Rule  6 (lo1)
+# No SSH to jails necessary
+block  quick on lo1 inet proto tcp  from any  to any port 22  label "RULE 6 -- DROP "  
+# 
+# Rule  7 (vtnet0)
+# Allow outgoing traffic
+pass out  quick on vtnet0 inet  from any  to any keep state  label "RULE 7 -- ACCEPT "  
+# 
+# Rule  8 (vtnet0)
+# Default deny any inbound traffic that didn't match any other rule
+block in   quick on vtnet0 inet  from any  to any  label "RULE 8 -- DROP "  
+# 
+# Rule  fallback rule
+#    fallback rule 
+block  quick inet  from any  to any  label "RULE 10000 -- DROP "  
+
