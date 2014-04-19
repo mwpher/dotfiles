@@ -1,10 +1,11 @@
-#
+#!/bin/bash
+
 # /etc/bash.bashrc
-#
 
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
+# Set PS1 {{{
 # If id command returns zero, you've root access.
 if [ $(id -u) -eq 0 ];
 then # you are root, set red colour prompt
@@ -12,7 +13,9 @@ then # you are root, set red colour prompt
 else # normal
   PS1="\u@\h: \w \$ "
 fi
+#}}}
 
+# what does this even do {{{
 case ${TERM} in
   xterm*|rxvt*|Eterm|aterm|kterm|gnome*)
     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033]0;%s@%s:%s\007" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
@@ -22,10 +25,11 @@ case ${TERM} in
     PROMPT_COMMAND=${PROMPT_COMMAND:+$PROMPT_COMMAND; }'printf "\033_%s@%s:%s\033\\" "${USER}" "${HOSTNAME%%.*}" "${PWD/#$HOME/~}"'
     ;;
 esac
+}}}
 
 [ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
 
-# TMUX
+# TMUX {{{
 if which tmux 2>&1 >/dev/null; then
 #if not inside a tmux session, and if no session is started, start a new session
     test -z "$TMUX" && (tmux attach || tmux new-session)
@@ -35,6 +39,7 @@ if which tmux 2>&1 >/dev/null; then
         tmux attach || break
     done
 fi
+# }}}
 
 ## Safety features ## {{{
 alias cp='cp -i'
@@ -61,11 +66,13 @@ alias l='ls -lhAF --color'
 #replacing vi with vim
 alias vi='vim'
 
-# Calculator
+# Calculator {{{
 calc() {
     echo “scale=3;$@” | bc -l
 }
-# Archive Extractor
+#}}}
+
+# Archive Extractor {{{
 extract() {
     local c e i
     (($#)) || return
@@ -95,3 +102,4 @@ extract() {
     done
     return $e
   }
+# }}}
