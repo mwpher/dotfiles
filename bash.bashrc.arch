@@ -105,3 +105,6 @@ extract() {
     return $e
   }
 # }}}
+
+export EDITOR='vim -p'
+export VISUAL='vim -p'
