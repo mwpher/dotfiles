@@ -49,6 +49,15 @@ alias chgrp='chgrp --preserve-root'
 alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
 # }}}
 
+# My aliases {{{
+alias q='exit'
+alias :q='exit'
+alias l='ls -lhAF --color'
+alias vi='vim'
+alias vim='vim -p' #Open arguments in multiple tabs
+# }}}
+
+# WOW    SUCH ARCH COMMANDS {{{
 # Custom command to list all packages not in base or base-devel
 alias installed='comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)'
 
@@ -57,9 +66,7 @@ alias pacman='pacmatic'
 
 #more informative look command
 alias l='ls -lhAF --color'
-
-#replacing vi with vim
-alias vi='vim'
+#}}}
 
 # Calculator {{{
 calc() {

@@ -13,7 +13,9 @@ alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in
 # My aliases {{{
 alias q='exit'
 alias :q='exit'
-alias vt='vim -p' #Open arguments in multiple tabs
+alias l='ls -lhAF --color'
+alias vi='vim'
+alias vim='vim -p' #Open arguments in multiple tabs
 # }}}
 
 # TMUX {{{
