@@ -6,8 +6,8 @@
 #enc_key=44D79E41
 #sign_key=F5C978E3
 src="/"
-dest="file:///usr/home/matt/btsync/backups/Chiyochan-FreeBSD"
-shortdest="/usr/home/matt/btsync/backups/Chiyochan-FreeBSD" 
+shortdest="/usr/home/matt/backups/Chiyochan-FreeBSD" 
+dest="file://$shortdest"
 
 ## Keychain is used to source the ssh-agent keys when running from a cron job
 #type -P keychain &>/dev/null || { echo "I require keychain but it's not installed.  Aborting." >&2; exit 1; }

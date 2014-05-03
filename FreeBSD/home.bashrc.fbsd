@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/local/bin/bash
 
 # Set PS1 {{{
 # If id command returns zero, you've root access.
@@ -38,3 +38,5 @@ if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
 # }}}
+
+if [ -x /usr/games/fortune ] ; then /usr/games/fortune freebsd-tips ; fi
