@@ -1,5 +1,15 @@
 #!/bin/sh
 
+# Set PS1 {{{
+# If id command returns zero, you've root access.
+if [ $(id -u) -eq 0 ];
+then # you are root, set red colour prompt
+  PS1="\\[$(tput setaf 1)\\]\u@\h: \w $(tput sgr0)\\]# "
+else # normal
+  PS1="\u@\h: \w \$ "
+fi
+#}}}
+
 ## Safety features ## {{{
 alias cp='cp -i'
 alias mv='mv -i'
@@ -14,8 +24,7 @@ alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in
 alias q='exit'
 alias :q='exit'
 alias l='ls -lhAF --color'
-alias vi='vim'
-alias vim='vim -p' #Open arguments in multiple tabs
+alias vim="/usr/local/bin/vim -p"
 # }}}
 
 EDITOR=vim; export EDITOR
