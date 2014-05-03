@@ -1,0 +1,52 @@
+#!/usr/local/bin/bash
+<<<<<<< HEAD
+=======
+
+[ -r /usr/local/share/bash-completion/bash_completion   ] && . /usr/local/share/bash-completion/bash_completion
+>>>>>>> 3fe374e97c2485717b0f94882c2be2aa50785958
+
+# Set PS1 {{{
+# If id command returns zero, you've root access.
+if [ $(id -u) -eq 0 ];
+then # you are root, set red colour prompt
+  PS1="\\[$(tput setaf 1)\\]\u@\h: \w $(tput sgr0)\\]# "
+else # normal
+  PS1="\u@\h: \w \$ "
+fi
+#}}}
+
+# C vars {{{
+export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
+export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
+export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
+# }}}
+
+## Safety features ## {{{
+alias cp='cp -i'
+alias mv='mv -i'
+alias rm='rm -I'                    # 'rm -i' prompts for every file
+# safer alternative w/ timeout, not stored in history
+# alias rm=' timeout 3 rm -Iv --one-file-system'
+alias ln='ln -i'
+alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
+# }}}
+
+# My aliases {{{
+alias q='exit'
+alias :q='exit'
+alias l='ls -lhAF --color'
+alias vi='vim'
+alias vim='vim -p' #Open arguments in multiple tabs
+# }}}
+
+EDITOR=vim; export EDITOR
+VISUAL=vim; export VISUAL
+
+# TMUX {{{
+if which tmux 2>&1 >/dev/null; then
+#if not inside a tmux session, and if no session is started, start a new session
+    test -z "$TMUX" && (tmux attach || tmux new-session)
+fi
+# }}}
+
+if [ -x /usr/games/fortune ] ; then /usr/games/fortune freebsd-tips ; fi
