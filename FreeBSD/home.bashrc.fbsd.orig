@@ -1,6 +1,9 @@
 #!/usr/local/bin/bash
+<<<<<<< HEAD
+=======
 
 [ -r /usr/local/share/bash-completion/bash_completion   ] && . /usr/local/share/bash-completion/bash_completion
+>>>>>>> 3fe374e97c2485717b0f94882c2be2aa50785958
 
 # Set PS1 {{{
 # If id command returns zero, you've root access.

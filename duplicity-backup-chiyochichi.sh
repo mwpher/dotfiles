@@ -5,9 +5,9 @@
 
 #enc_key=44D79E41
 #sign_key=F5C978E3
-src="/"
-shortdest="/usr/home/matt/backups/Chiyochan-FreeBSD" 
-dest="file://$shortdest"
+src="scp://root@192.227.176.33"
+shortdest="/usr/home/matt/backups/Chiyochichi-FreeBSD" 
+dest="$shortdest"
 
 ## Keychain is used to source the ssh-agent keys when running from a cron job
 #type -P keychain &>/dev/null || { echo "I require keychain but it's not installed.  Aborting." >&2; exit 1; }
@@ -20,12 +20,15 @@ dest="file://$shortdest"
 #      export GPG_AGENT_INFO
 #fi
 
-duplicity --use-agent \
+duplicity full \
+	 --use-agent \
          --verbosity info \
 	 --no-encryption \
          --full-if-older-than 60D \
          --num-retries 3 \
          --asynchronous-upload \
+	 --ssh-askpass \
+	 --ssh-backend pexpect \
          --volsize 100 \
          --archive-dir /root/.cache/duplicity \
          --log-file /var/log/duplicity.log \
@@ -35,8 +38,6 @@ duplicity --use-agent \
          --exclude /tmp \
 	 --exclude /usr/ports \
 	 --exclude /usr/src \
-	 --exclude /root/backups \
-         --exclude $shortdest \
          --exclude '**rdiff-backup-data' \
          "$src" "$dest"
 
