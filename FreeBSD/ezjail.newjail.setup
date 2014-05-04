@@ -60,8 +60,7 @@ pw useradd -n admin -u 1001 -s /bin/tcsh -m -d /home/admin -G wheel -c 'Admin Us
 # PKGng
 pkg bootstrap
 pkg update
-pkg install vim bash
-
+pkg install puppet
 
 # Postinstall
 ##############
