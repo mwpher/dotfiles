@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/local/bin/bash
+
+[ -r /usr/local/share/bash-completion/bash_completion   ] && . /usr/local/share/bash-completion/bash_completion
 
 # Set PS1 {{{
 # If id command returns zero, you've root access.
@@ -29,8 +31,13 @@ alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in
 # My aliases {{{
 alias q='exit'
 alias :q='exit'
-alias vt='vim -p' #Open arguments in multiple tabs
+alias l='ls -lhAF --color'
+alias vi='vim'
+alias vim='vim -p' #Open arguments in multiple tabs
 # }}}
+
+EDITOR=vim; export EDITOR
+VISUAL=vim; export VISUAL
 
 # TMUX {{{
 if which tmux 2>&1 >/dev/null; then
@@ -38,3 +45,5 @@ if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
 # }}}
+
+if [ -x /usr/games/fortune/freebsd-tips ] ; then /usr/games/fortune/freebsd-tips ; fi

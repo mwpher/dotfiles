@@ -23,8 +23,12 @@ alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in
 # My aliases {{{
 alias q='exit'
 alias :q='exit'
-alias vt='vim -p' #Open arguments in multiple tabs
+alias l='ls -lhAF --color'
+alias vim="/usr/local/bin/vim -p"
 # }}}
+
+EDITOR=vim; export EDITOR
+VISUAL=vim; export VISUAL
 
 # TMUX {{{
 if which tmux 2>&1 >/dev/null; then
@@ -32,8 +36,3 @@ if which tmux 2>&1 >/dev/null; then
     test -z "$TMUX" && (tmux attach || tmux new-session)
 fi
 # }}}
-
-#more informative look command
-alias l='ls -lhAF --color'
-
-alias vim="/usr/local/bin/vim"
