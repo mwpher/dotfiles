@@ -25,16 +25,11 @@ filetype off                  " required!
     set rtp+=~/.vim/bundle/vundle/
     call vundle#rc()
     Bundle 'gmarik/vundle'
-    "Add your bundles here
-"    Bundle 'Syntastic' "uber awesome syntax and errors highlighter
-"    Bundle 'altercation/vim-colors-solarized' "T-H-E colorscheme
 	Bundle 'tpope/vim-fugitive'
 	Bundle 'tpope/vim-unimpaired'
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'nathanaelkane/vim-indent-guides' 
 	Bundle 'bling/vim-airline'
-	" Bundle 'edkolev/tmuxline.vim'
-
 	Bundle "MarcWeber/vim-addon-mw-utils"
 	Bundle "tomtom/tlib_vim"
 	Bundle "garbas/vim-snipmate"
@@ -109,8 +104,8 @@ set incsearch
 " Don't redraw while executing macros (good performance config)
 set lazyredraw 
 
-" For regular expressions turn magic off
-set nomagic
+" For regular expressions turn magic on
+set magic
 
 " Show matching brackets when text indicator is over them
 set showmatch 

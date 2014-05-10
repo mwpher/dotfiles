@@ -46,4 +46,4 @@ if which tmux 2>&1 >/dev/null; then
 fi
 # }}}
 
-if [ -x /usr/games/fortune ] ; then /usr/games/fortune freebsd-tips ; fi
+if [ -x /usr/games/fortune/freebsd-tips ] ; then /usr/games/fortune/freebsd-tips ; fi
