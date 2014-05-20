@@ -1,4 +1,18 @@
 [ -e ~/dotfiles/zshrc.grml ] && . ~/dotfiles/zshrc.grml
+[ -e ~/dotfiles/opp.zsh/opp.zsh ] && . ~/dotfiles/opp.zsh/opp.zsh
+
+export HISTSIZE=10000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
+setopt autocd
+setopt vi
+export KEYTIMEOUT=1
+#VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
+#function is_vimode () {
+#	REPLY="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
+#}
+#grml_theme_add_token vimode is_vimode()
+#zstyle ':prompt:grml:right:setup' items vimode sad-smiley
 
 # Platform checker {{{
 platform='unknown'

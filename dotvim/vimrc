@@ -246,3 +246,5 @@ nnoremap <CR> :noh<CR><CR>
 " show code that's going on too long
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
+set shell=bash
