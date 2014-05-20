@@ -1,0 +1,3 @@
+ALL : /etc/hosts.deniedssh : severity local7.notice : deny
+
+ALL : ALL : allow

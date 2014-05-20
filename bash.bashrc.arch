@@ -56,9 +56,6 @@ alias installed='comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort
 
 #Use pacmatic instead of pacman
 alias pacman='pacmatic'
-
-#more informative look command
-alias l='ls -lhAF --color'
 #}}}
 
 # Calculator {{{

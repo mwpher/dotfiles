@@ -31,9 +31,11 @@ alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in
 # My aliases {{{
 alias q='exit'
 alias :q='exit'
-alias l='ls -lhAF --color'
+alias l='ls -lhAFG'
 alias vi='vim'
 alias vim='vim -p' #Open arguments in multiple tabs
+alias ci='ci -u'
+alias co='co -l'
 # }}}
 
 EDITOR=vim; export EDITOR
