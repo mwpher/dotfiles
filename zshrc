@@ -18,7 +18,7 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 ## Safety features ## {{{
 alias cp='cp -i'
 alias mv='mv -i'
-alias rm='rm -I'                    # 'rm -i' prompts for every file
+alias rm='rm -i'                    # 'rm -i' prompts for every file
 # safer alternative w/ timeout, not stored in history
 # alias rm=' timeout 3 rm -Iv --one-file-system'
 alias ln='ln -i'
@@ -30,7 +30,7 @@ alias q='exit'
 alias :q='exit'
 alias l='ls -lhAF --color'
 if [ $platform == 'Mac' ]; then
-    alias vim="/usr/local/bin/vim -p"
+	alias vim="/usr/local/bin/vim -p"
 else
 	alias vim='vim -p'
 fi
