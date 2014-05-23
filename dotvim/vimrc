@@ -248,3 +248,8 @@ highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
 set shell=bash
+
+imap <F3> <C-n>
+imap <F4> <C-f>
+imap <F5> <C-x><C-f>
+
