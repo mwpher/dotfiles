@@ -1,3 +1,6 @@
 [submodule "MyNotes"]
 	path = MyNotes
 	url = https://gist.github.com/c1eb0d136a3407a15ce0.git
+[submodule "opp.zsh"]
+	path = opp.zsh
+	url = https://github.com/hchbaw/opp.zsh.git

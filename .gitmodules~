@@ -1,0 +1,6 @@
+[submodule "Docs/freebsd-setup"]
+	path = Docs/freebsd-setup
+	url = https://gist.github.com/f20493d96af7147ebccf.git
+[submodule "MyNotes"]
+	path = MyNotes
+	url = https://gist.github.com/c1eb0d136a3407a15ce0.git
