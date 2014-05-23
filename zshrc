@@ -20,7 +20,9 @@ unamestr=`uname`
 if [[ "$unamestr" == 'Darwin' ]]; then
    platform='Mac'
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
-   platform='Freebsd'
+   platform='FreeBSD'
+elif [[ "$unamestr" == 'OpenBSD' ]]; then
+   platform='OpenBSD'
 fi
 #}}}
 
@@ -66,8 +68,13 @@ alias q='exit'
 alias :q='exit'
 if [ $platform == 'Linux' ]; then
 	alias ls='ls -lhAF --color'
+	alias ls='ls -AF --color'
+elif [ $platform == 'OpenBSD' ]; then
+	alias ls='ls -lhAF'
+	alias l='ls -AF'
 else
 	alias ls='ls -lhAFG'
+	alias l='ls -AFG'
 fi
 alias vi='vim -p'
 if [ $platform == 'Mac' ]; then
