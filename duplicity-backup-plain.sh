@@ -6,7 +6,7 @@
 #enc_key=44D79E41
 #sign_key=F5C978E3
 src="/"
-shortdest="/usr/home/matt/backups/Chiyochan-FreeBSD" 
+shortdest="/home/matt/backups/Chiyochichi-OpenBSD" 
 dest="file://$shortdest"
 
 ## Keychain is used to source the ssh-agent keys when running from a cron job

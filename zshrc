@@ -86,27 +86,30 @@ fi
 # My aliases {{{
 alias q='exit'
 alias :q='exit'
+
+alias ci='ci -u'
+alias co='co -l'
+# }}}
+# Platform-specific aliases {{{
 if [ $platform == 'Linux' ]; then
 	alias ls='ls -lhAF --color'
 	alias ls='ls -AF --color'
 elif [ $platform == 'OpenBSD' ]; then
 	alias ls='ls -lhAF'
 	alias l='ls -AF'
+	alias poweroff='shutdown -ph now'
 else
 	alias ls='ls -lhAFG'
 	alias l='ls -AFG'
 fi
-alias vi='vim -p'
 if [ $platform == 'Mac' ]; then
 	alias vim="/usr/local/bin/vim -p"
+	alias vi="/usr/local/bin/vim -p"
 else
 	alias vim='vim -p'
+	alias vi='vim -p'
 fi
-
-alias ci='ci -u'
-alias co='co -l'
 # }}}
-
 EDITOR=vim; export EDITOR
 VISUAL=vim; export VISUAL
 
