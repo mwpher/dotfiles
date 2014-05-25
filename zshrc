@@ -2,11 +2,31 @@
 [ -e ~/dotfiles/opp.zsh/opp.zsh ] && . ~/dotfiles/opp.zsh/opp.zsh
 
 export HISTSIZE=10000
-export HISTFILE="$HOME/.history"
+export HISTFILE="$HOME/.zhistory"
 export SAVEHIST=$HISTSIZE
 setopt autocd
-setopt vi
 export KEYTIMEOUT=1
+
+# Vim mode {{{
+zle-keymap-select () {
+    if [ $TERM = "rxvt-256color" ]; then
+        if [ $KEYMAP = vicmd ]; then
+            echo -ne "\033]12;Red\007"
+        else
+            echo -ne "\033]12;Grey\007"
+        fi
+    fi
+}
+zle -N zle-keymap-select
+zle-line-init () {
+    zle -K viins
+    if [ $TERM = "rxvt-256color" ]; then
+        echo -ne "\033]12;Grey\007"
+    fi
+}
+zle -N zle-line-init
+setopt vi
+# }}}
 #VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
 #function is_vimode () {
 #	REPLY="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"

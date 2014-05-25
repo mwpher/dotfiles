@@ -4,3 +4,9 @@
 [submodule "opp.zsh"]
 	path = opp.zsh
 	url = https://github.com/hchbaw/opp.zsh
+[submodule "4493681e9efdcc271830"]
+	path = 4493681e9efdcc271830
+	url = https://gist.github.com/mwpher/4493681e9efdcc271830
+[submodule "zfs-rollback"]
+	path = zfs-rollback
+	url = https://gist.github.com/mwpher/4493681e9efdcc271830
