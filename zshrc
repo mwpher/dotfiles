@@ -60,7 +60,10 @@ alias installed=\
 alias pacman='pacmatic'
 #}}}
 
-# FreeBSD C vars {{{
+# Set env variables {{{
+export EDITOR=vim
+export VISUAL=vim
+export SHELL=`which zsh`
 if [ $platform == 'FreeBSD' ]; then
 export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
 export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
@@ -110,8 +113,6 @@ else
 	alias vi='vim -p'
 fi
 # }}}
-EDITOR=vim; export EDITOR
-VISUAL=vim; export VISUAL
 
 # TMUX {{{
 if which tmux 2>&1 >/dev/null; then
