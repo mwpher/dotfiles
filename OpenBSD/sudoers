@@ -1,0 +1,14 @@
+# $Id$
+
+Defaults logfile=/var/log/sudo.log
+Defaults!/usr/bin/sudoreplay !logfile
+Defaults!/usr/local/bin/sudoreplay !logfile
+Defaults!/sbin/reboot !logfile
+
+root ALL=(ALL) ALL
+
+#%wheel ALL=(ALL) ALL
+
+%wheel ALL=(ALL) NOPASSWD: ALL
+
+# $Log$
