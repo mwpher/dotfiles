@@ -26,13 +26,13 @@ zle-line-init () {
 }
 zle -N zle-line-init
 setopt vi
-# }}}
 #VIM_PROMPT="%{$fg_bold[yellow]%} [% NORMAL]% %{$reset_color%}"
 #function is_vimode () {
 #	REPLY="${${KEYMAP/vicmd/$VIM_PROMPT}/(main|viins)/}"
 #}
 #grml_theme_add_token vimode is_vimode()
 #zstyle ':prompt:grml:right:setup' items vimode sad-smiley
+# }}}
 
 # Platform checker {{{
 platform='unknown'
@@ -52,12 +52,14 @@ zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
 #}}}
 
 # WOW    SUCH ARCH COMMANDS {{{
-# Custom command to list all packages not in base or base-devel
-alias installed=\
-	'comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)'
+if [ $platform == 'Linux' ]; then
+	# Custom command to list all packages not in base or base-devel
+	alias installed=\
+		'comm -23 <(pacman -Qeq|sort) <(pacman -Qgq base base-devel|sort)'
 
-#Use pacmatic instead of pacman
-alias pacman='pacmatic'
+	#Use pacmatic instead of pacman
+	alias pacman='pacmatic'
+fi
 #}}}
 
 # Set env variables {{{
@@ -101,7 +103,7 @@ if [ $platform == 'Linux' ]; then
 elif [ $platform == 'OpenBSD' ]; then
 	alias ls='ls -lhAF'
 	alias l='ls -AF'
-	alias poweroff='shutdown -ph now'
+	alias poweroff='sudo shutdown -ph now'
 else
 	alias ls='ls -lhAFG'
 	alias l='ls -AFG'
