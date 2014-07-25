@@ -6,10 +6,6 @@
 	path = opp.zsh
 	url = https://github.com/hchbaw/opp.zsh
 	branch = master
-[submodule "4493681e9efdcc271830"]
-	path = 4493681e9efdcc271830
-	url = https://gist.github.com/mwpher/4493681e9efdcc271830
-	branch = master
 [submodule "zfs-rollback"]
 	path = zfs-rollback
 	url = https://gist.github.com/mwpher/4493681e9efdcc271830
