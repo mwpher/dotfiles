@@ -70,7 +70,6 @@ if [ $platform == 'FreeBSD' ]; then
 export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
 export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
-export CFLAGS='-Weverything -Wno-unused-parameter -std=c99 -O0 -D_FORTIFY_SOURCE=2 -fstack-protector-all -lmatt -lm'
 fi
 # }}}
 
