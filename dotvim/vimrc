@@ -196,6 +196,8 @@ au BufRead,BufNewFile *.h set filetype=c
 au BufRead,BufNewFile *.pp set filetype=ruby
 au BufRead,BufNewFile *.pp set expandtab tabstop=2 shiftwidth=2
 
+au BufRead,BufNewFile *.yml set expandtab tabstop=2 shiftwidth=2
+
 " Automatically set working directory
 set autochdir
 
