@@ -43,6 +43,7 @@ filetype off                  " required!
 	Bundle "scrooloose/syntastic"
 	Bundle "zah/nimrod.vim"
 	Bundle "rcs.vim"
+	Bundle "chase/vim-ansible-yaml"
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
