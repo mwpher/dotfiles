@@ -30,20 +30,21 @@ filetype off                  " required!
 	Bundle 'Lokaltog/vim-easymotion'
 	Bundle 'nathanaelkane/vim-indent-guides' 
 	Bundle 'bling/vim-airline'
-	Bundle "MarcWeber/vim-addon-mw-utils"
-	Bundle "tomtom/tlib_vim"
-	Bundle "garbas/vim-snipmate"
+	Bundle 'MarcWeber/vim-addon-mw-utils'
+	Bundle 'tomtom/tlib_vim'
+	Bundle 'garbas/vim-snipmate'
 
-	Bundle "honza/vim-snippets"
+	Bundle 'honza/vim-snippets'
 
-	Bundle "mwpher/c.vim"
+	Bundle 'mwpher/c.vim'
 
 	Bundle 'delimitMate.vim'
 
-	Bundle "scrooloose/syntastic"
-	Bundle "zah/nimrod.vim"
-	Bundle "rcs.vim"
-	Bundle "chase/vim-ansible-yaml"
+	Bundle 'scrooloose/syntastic'
+	Bundle 'zah/nimrod.vim'
+	Bundle 'rcs.vim'
+	Bundle 'chase/vim-ansible-yaml'
+	Bundle 'scrooloose/nerdtree'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
