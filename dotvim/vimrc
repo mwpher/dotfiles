@@ -45,6 +45,7 @@ filetype off                  " required!
 	Bundle 'rcs.vim'
 	Bundle 'chase/vim-ansible-yaml'
 	Bundle 'scrooloose/nerdtree'
+	Bundle 'kien/ctrlp.vim'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
