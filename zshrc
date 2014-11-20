@@ -74,12 +74,6 @@ fi
 # }}}
 
 ## Safety features ## {{{
-alias cp='cp -i'
-alias mv='mv -i'
-alias rm='rm -i'                    # 'rm -i' prompts for every file
-# safer alternative w/ timeout, not stored in history
-# alias rm=' timeout 3 rm -Iv --one-file-system'
-alias ln='ln -i'
 alias cls=' echo -ne "\033c"'       # clear screen for real (it does not work in Terminology)
 if [ $platform == 'Linux' ]; then
 	alias chown='chown --preserve-root'
