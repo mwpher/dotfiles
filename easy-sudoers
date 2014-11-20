@@ -1,10 +1,12 @@
 # $Id$
-# $Log$
 
 Defaults log_output
 Defaults!/usr/bin/sudoreplay !log_output
 Defaults!/usr/local/bin/sudoreplay !log_output
 Defaults!/sbin/reboot !log_output
+
+# Allow Ansible pipelining
+Defaults !requiretty
 
 root ALL=(ALL) ALL
 
@@ -15,3 +17,5 @@ root ALL=(ALL) ALL
 ## Read drop-in files from /usr/local/etc/sudoers.d
 ## (the '#' here does not indicate a comment)
 #includedir /usr/local/etc/sudoers.d
+
+# $Log$
