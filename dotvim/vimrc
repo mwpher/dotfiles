@@ -259,3 +259,6 @@ imap <F3> <C-n>
 imap <F4> <C-f>
 imap <F5> <C-x><C-f>
 
+" Stop leaving tilde files all over the place
+set nobackup
+set writebackup
