@@ -1,14 +1,15 @@
-# $Id$
+# {{ ansible_ managed }}
 
 Defaults logfile=/var/log/sudo.log
 Defaults!/usr/bin/sudoreplay !logfile
 Defaults!/usr/local/bin/sudoreplay !logfile
 Defaults!/sbin/reboot !logfile
 
+# Allow Ansible pipelining
+Defaults !requiretty
+
 root ALL=(ALL) ALL
 
 #%wheel ALL=(ALL) ALL
 
 %wheel ALL=(ALL) NOPASSWD: ALL
-
-# $Log$
