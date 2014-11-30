@@ -1,18 +1,23 @@
 # {{ ansible_managed }}
 
+# Setup sudoreplay
 Defaults log_output
 Defaults!/usr/bin/sudoreplay !log_output
 Defaults!/usr/local/bin/sudoreplay !log_output
 Defaults!/sbin/reboot !log_output
 
-# Allow Ansible pipelining
-Defaults !requiretty
+# make sure ansible works right
+Defaults:ansible !requiretty
+Defaults:ansible !lecture
 
 root ALL=(ALL) ALL
 
 #%wheel ALL=(ALL) ALL
 
 %wheel ALL=(ALL) NOPASSWD: ALL
+
+#emergency backup
+{{ periodic_user }} ALL=(ALL) /usr/local/sbin/visudo
 
 ## Read drop-in files from /usr/local/etc/sudoers.d
 ## (the '#' here does not indicate a comment)
