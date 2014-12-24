@@ -1,5 +1,5 @@
 """"""""""""""""
-" => Vundle
+" => vimrc
 """"""""""""""""
 
 set nocompatible              " be iMproved
@@ -11,6 +11,7 @@ let mapleader = ","
 let g:mapleader = ","
 let g:C_MapLeader = ','
 
+" => Vundle {{{
 filetype off                  " required!
 " Setting up Vundle - the vim plugin bundler
     let iCanHazVundle=1
@@ -46,12 +47,14 @@ filetype off                  " required!
 	Bundle 'chase/vim-ansible-yaml'
 	Bundle 'scrooloose/nerdtree'
 	Bundle 'kien/ctrlp.vim'
+	Bundle 'Shougo/neocomplcache.vim'
+	Bundle 'mbbill/undotree'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
         :BundleInstall
     endif
-" Setting up Vundle - the vim plugin bundler end
+" Setting up Vundle - the vim plugin bundler
 
 filetype plugin indent on     " required!
 syntax on
@@ -64,12 +67,10 @@ syntax on
 " :BundleClean(!)      - confirm (or auto-approve) removal of unused bundles
 "
 " see :h vundle for more details or wiki for FAQ
-" NOTE: comments after Bundle commands are not allowed.
+" NOTE: comments after Bundle commands are not allowed. }}}
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => General
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => General {{{
 " Sets how many lines of history VIM has to remember
 set history=700
 
@@ -124,11 +125,9 @@ set tm=500
 
 " Add a bit extra margin to the left
 set foldcolumn=1
+" }}}
 
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Colors and Fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Colors and Fonts {{{
 try
     colorscheme desert
 catch
@@ -149,10 +148,9 @@ set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
+" }}}
 
-"""""""""""""""""""""""""""""""
-" => Visual mode related      "
-"""""""""""""""""""""""""""""""
+" => Visual mode related {{{
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :call VisualSelection('f', '')<CR>
@@ -179,14 +177,13 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " Enable line numbers
 set nu
+" }}}
 
 """""""""""""""""
 " => My tweaks  "
 """""""""""""""""
 
-"""""""""""""""""
-" Tab settings
-"""""""""""""""""
+" => Tab settings {{{
 au BufRead,BufNewFile *.c set expandtab tabstop=4 shiftwidth=4
 au BufRead,BufNewFile Makefile,makefile,*.mk set noexpandtab tabstop=4 shiftwidth=4
 
@@ -196,14 +193,18 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " force .h files to be C, not CPP
 au BufRead,BufNewFile *.h set filetype=c
 
+" Ruby
 au BufRead,BufNewFile *.pp set filetype=ruby
 au BufRead,BufNewFile *.pp set expandtab tabstop=2 shiftwidth=2
 
+" Yaml (ansible)
 au BufRead,BufNewFile *.yml set expandtab tabstop=2 shiftwidth=2
+" }}}
 
 " Automatically set working directory
 set autochdir
 
+" Easier window switching
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -212,7 +213,7 @@ nnoremap <C-H> <C-W><C-H>
 " Longer timeout
 set timeoutlen=4000
 
-" c.vim settings
+" => c.vim {{{
 let g:C_CCompiler='clang'
 " strict compiler settings
 let g:C_CFlags='-Weverything -Wno-unused-parameter -Wno-vla -std=c99 -ggdb3 -O0 -D_FORTIFY_SOURCE=2 -fstack-protector-all -c'
@@ -220,20 +221,23 @@ let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0'
 " libraries
 let g:C_Libs='-lcs50 -lm -lmatt -lcrypt'
 let g:C_CplusLibs='-lcs50 -lm'
+" }}}
 
-" Auto-reload vimrc
+" => Auto-reload vimrc {{{
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+" }}}
 
-" easy tab switching and rearranging
+" easy tab switching and rearranging {{{
 nnoremap <C-Left> :tabprevious<CR>
 nnoremap <C-Right> :tabnext<CR>
 nnoremap <silent> <A-Left> :execute 'silent! tabmove ' . (tabpagenr()-2)<CR>
 nnoremap <silent> <A-Right> :execute 'silent! tabmove ' . tabpagenr()<CR>
+" }}}
 
-" Stuff for nimrod.vim
+" Stuff for nimrod.vim {{{
 fun! JumpToDef()
   if exists("*GotoDefinition_" . &filetype)
     call GotoDefinition_{&filetype}()
@@ -244,6 +248,7 @@ endf
 " Jump to tag
 nn <M-g> :call JumpToDef()<cr>
 ino <M-g> <esc>:call JumpToDef()<cr>i
+" }}}
 
 
 "clear last search
@@ -253,16 +258,19 @@ nnoremap <CR> :noh<CR><CR>
 highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
 
+" Keep Vim from freaking out
 set shell=bash
 
-imap <F3> <C-n>
-imap <F4> <C-f>
-imap <F5> <C-x><C-f>
+" File completion - unnecessary with neocomplete
+"imap <F3> <C-n>
+"imap <F4> <C-f>
+"imap <F5> <C-x><C-f>
 
-" Stop leaving tilde files all over the place
+" Settings for backup & undo files {{{
 set nobackup
 set writebackup
 
+" Make directories {{{
 function! InitializeDirectories()
 	let separator = "."
 	let parent = $HOME 
@@ -296,3 +304,55 @@ function! InitializeDirectories()
 	endfor
 endfunction
 call InitializeDirectories() 
+" }}} }}}
+
+" Neocomplete settings {{{
+" Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
+let g:acp_enableAtStartup = 0
+" Use neocomplcache.
+let g:neocomplcache_enable_at_startup = 1
+" Use smartcase.
+let g:neocomplcache_enable_smart_case = 1
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+" Plugin key-mappings.
+inoremap <expr><C-g>     neocomplcache#undo_completion()
+inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplcache#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+endfunction
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" <C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y>  neocomplcache#close_popup()
+inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" }}}
