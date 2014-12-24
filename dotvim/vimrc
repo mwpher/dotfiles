@@ -267,8 +267,9 @@ set shell=bash
 "imap <F5> <C-x><C-f>
 
 " Settings for backup & undo files {{{
-set nobackup
+set backup
 set writebackup
+set undofile
 
 " Make directories {{{
 function! InitializeDirectories()
