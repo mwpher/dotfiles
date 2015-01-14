@@ -49,6 +49,7 @@ filetype plugin on                  " required!
 	Bundle 'kien/ctrlp.vim'
 	Bundle 'Shougo/neocomplcache.vim'
 	Bundle 'mbbill/undotree'
+	Bundle 'junegunn/vim-easy-align'
     if iCanHazVundle == 0
         echo "Installing Bundles, please ignore key map error messages"
         echo ""
@@ -199,6 +200,9 @@ au BufRead,BufNewFile *.pp set expandtab tabstop=2 shiftwidth=2
 
 " Yaml (ansible)
 au BufRead,BufNewFile *.yml set expandtab tabstop=2 shiftwidth=2
+
+" Python
+au BufRead,BufNewFile *.py set expandtab tabstop=2 shiftwidth=2
 " }}}
 
 " Automatically set working directory
@@ -381,4 +385,12 @@ augroup BWCCreateDir
     autocmd!
     autocmd BufWritePre * :call s:MkNonExDir(expand('<afile>'), +expand('<abuf>'))
 augroup END
+" }}}
+
+" Easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 " }}}

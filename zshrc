@@ -88,6 +88,11 @@ alias :q='exit'
 
 alias ci='ci -u'
 alias co='co -l'
+
+pipupgrade() { 
+	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
+	sudo pip install -U `cat ./.piptmp`;
+}
 # }}}
 # Platform-specific aliases {{{
 if [ $platform == 'Linux' ]; then
