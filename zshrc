@@ -89,12 +89,16 @@ alias :q='exit'
 alias ci='ci -u'
 alias co='co -l'
 
+alias ap='ansible-playbook'
+alias apv='ansible-playbook -vvv'
+
 pipupgrade() { 
 	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
 	sudo pip install -U `cat ./.piptmp`;
 	rm ./.piptmp;
 }
 # }}}
+
 # Platform-specific aliases {{{
 if [ $platform == 'Linux' ]; then
 	alias ls='ls -lhAF --color'
