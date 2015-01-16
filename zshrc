@@ -89,8 +89,12 @@ alias :q='exit'
 alias ci='ci -u'
 alias co='co -l'
 
-alias ap='ansible-playbook'
-alias apv='ansible-playbook -vvv'
+alias Ap='ansible-playbook'
+alias Apv='ansible-playbook -vvv'
+
+alias Gs='git status'
+alias Ga='git add'
+alias Gc='git commit'
 
 pipupgrade() { 
 	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
