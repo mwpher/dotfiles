@@ -14,18 +14,19 @@ let g:C_MapLeader = ','
 " => Vundle {{{
 filetype plugin on                  " required!
 " Setting up Vundle - the vim plugin bundler
-    let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle.."
-        echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-        let iCanHazVundle=0
-    endif
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
-    Bundle 'gmarik/vundle'
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+	echo "Installing Vundle.."
+	echo ""
+	silent !mkdir -p ~/.vim/bundle
+	silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+	let iCanHazVundle=0
+endif
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+	Bundle 'gmarik/vundle'
 	Bundle 'tpope/vim-fugitive'
 	Bundle 'tpope/vim-unimpaired'
 	Bundle 'Lokaltog/vim-easymotion'
@@ -34,13 +35,9 @@ filetype plugin on                  " required!
 	Bundle 'MarcWeber/vim-addon-mw-utils'
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'garbas/vim-snipmate'
-
 	Bundle 'honza/vim-snippets'
-
 	Bundle 'mwpher/c.vim'
-
 	Bundle 'delimitMate.vim'
-
 	Bundle 'scrooloose/syntastic'
 	Bundle 'zah/nimrod.vim'
 	Bundle 'rcs.vim'
@@ -51,11 +48,14 @@ filetype plugin on                  " required!
 	Bundle 'mbbill/undotree'
 	Bundle 'junegunn/vim-easy-align'
 	Bundle 'gitv'
-    if iCanHazVundle == 0
-        echo "Installing Bundles, please ignore key map error messages"
-        echo ""
-        :BundleInstall
-    endif
+	Bundle 'vim-pandoc/vim-pandoc'
+	Bundle 'vim-pandoc/vim-pandoc-syntax'
+	Bundle 'vim-pandoc/vim-pandoc-after'
+if iCanHazVundle == 0
+	echo "Installing Bundles, please ignore key map error messages"
+	echo ""
+	:BundleInstall
+endif
 " Setting up Vundle - the vim plugin bundler
 
 filetype plugin indent on     " required!
@@ -229,10 +229,10 @@ let g:C_CplusLibs='-lcs50 -lm'
 " }}}
 
 " => Auto-reload vimrc {{{
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
+"augroup myvimrc
+"    au!
+"    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
+"augroup END
 " }}}
 
 " easy tab switching and rearranging {{{
@@ -260,8 +260,8 @@ ino <M-g> <esc>:call JumpToDef()<cr>i
 nnoremap <CR> :noh<CR><CR>
 
 " show code that's going on too long
-highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
-match OverLength /\%81v.\+/
+"highlight OverLength ctermbg=darkred ctermfg=white guibg=#592929
+"match OverLength /\%81v.\+/
 
 " Keep Vim from freaking out
 set shell=bash
@@ -395,3 +395,10 @@ vmap <Enter> <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 " }}}
+
+" Pandoc settings {{{
+let g:pandoc#formatting#mode = 'ha'
+let g:pandoc#syntax#conceal#use = 0
+let g:pandoc#after#modules#enabled = ["snipmate"]
+let g:pandoc#keyboard#sections#header_style = "s"
+"}}}
