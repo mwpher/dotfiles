@@ -35,7 +35,6 @@ call vundle#rc()
 	Bundle 'MarcWeber/vim-addon-mw-utils'
 	Bundle 'tomtom/tlib_vim'
 	Bundle 'garbas/vim-snipmate'
-	Bundle 'honza/vim-snippets'
 	Bundle 'mwpher/c.vim'
 	Bundle 'delimitMate.vim'
 	Bundle 'scrooloose/syntastic'
@@ -51,6 +50,7 @@ call vundle#rc()
 	Bundle 'vim-pandoc/vim-pandoc'
 	Bundle 'vim-pandoc/vim-pandoc-syntax'
 	Bundle 'vim-pandoc/vim-pandoc-after'
+	Bundle 'mwpher/vim-snippets'
 if iCanHazVundle == 0
 	echo "Installing Bundles, please ignore key map error messages"
 	echo ""
@@ -224,8 +224,8 @@ let g:C_CCompiler='clang'
 let g:C_CFlags='-Weverything -Wno-unused-parameter -Wno-vla -std=c99 -ggdb3 -O0 -D_FORTIFY_SOURCE=2 -fstack-protector-all -c'
 let g:C_LFlags='-Weverything -Wno-unused-parameter -std=c99 -ggdb3 -O0'
 " libraries
-let g:C_Libs='-lcs50 -lm -lmatt -lcrypt'
-let g:C_CplusLibs='-lcs50 -lm'
+let g:C_Libs='-lm -lmatt -lcrypt'
+let g:C_CplusLibs='-lm'
 " }}}
 
 " => Auto-reload vimrc {{{

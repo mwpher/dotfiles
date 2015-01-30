@@ -1,5 +1,5 @@
-[submodule "MyNotes"]
-	path = MyNotes
+[submodule "general.sh"]
+	path = general.sh
 	url = https://gist.github.com/c1eb0d136a3407a15ce0.git
 	branch = master
 [submodule "opp.zsh"]
@@ -9,4 +9,8 @@
 [submodule "zfs-rollback"]
 	path = zfs-rollback
 	url = https://gist.github.com/mwpher/4493681e9efdcc271830
+	branch = master
+[submodule "Notes"]
+	path = Notes
+	url = https://github.com/mwpher/Notes
 	branch = master
