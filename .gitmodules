@@ -1,6 +1,6 @@
 [submodule "general.sh"]
 	path = general.sh
-	url = https://gist.github.com/c1eb0d136a3407a15ce0.git
+	url = https://gist.github.com/mwpher/c1eb0d136a3407a15ce0
 	branch = master
 [submodule "opp.zsh"]
 	path = opp.zsh
