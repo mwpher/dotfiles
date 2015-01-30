@@ -102,7 +102,6 @@ pipupgrade() {
 	sudo pip install -U `cat ./.piptmp`;
 	rm ./.piptmp;
 }
-# }}}
 
 # Platform-specific aliases {{{
 if [ $platform == 'Linux' ]; then
@@ -123,7 +122,8 @@ else
 	alias vim='vim -p'
 	alias vi='vim -p'
 fi
-# }}}
+#}}}
+#}}}
 
 # TMUX {{{
 if which tmux 2>&1 >/dev/null; then
