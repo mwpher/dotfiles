@@ -29,6 +29,10 @@ pw add user -n git -m -s /usr/local/bin/bash -c "GitLab"
 # Add 'git' user to 'redis' group (this will come in useful later!)
 pw user mod git -G redis
 
+echo '#!/bin/sh
+PGDATA="/usr/local/pgsql/data"
+export PGDATA="/usr/local/pgsql/data"' > /usr/local/pgsql/.profile
+
 service postgresql initdb
 service postgresql start
 
@@ -51,7 +55,6 @@ chmod 755 /usr/local/var/run/redis
 # Restart redis
 service redis restart
 
-# Change to git home directory
 echo '#!/bin/sh
 set -e
 cd /home/git
@@ -80,6 +83,7 @@ cp config/unicorn.rb.example config/unicorn.rb
 
 vi config/unicorn.rb
 
+# Copy the example Rack attack config
 cp config/initializers/rack_attack.rb.example config/initializers/rack_attack.rb
 
 # Configure Git global settings for git user, useful when editing via web
@@ -92,7 +96,7 @@ cp config/resque.yml.example config/resque.yml
 
 # Configure Redis to use the modified socket path
 # Change "production" line to "unix:/usr/local/var/run/redis/redis.sock"
-vi config/resque.yml
+vim config/resque.yml
 
 # Copy database config
 cp config/database.yml.postgresql config/database.yml
@@ -101,13 +105,14 @@ bundle config build.nokogiri --use-system-libraries
 
 bundle install --deployment --without development test mysql aws
 
+# Run the rake task for installing gitlab-shell
 bundle exec rake gitlab:shell:install[v2.4.0] REDIS_URL=unix:/usr/local/var/run/redis/redis.sock RAILS_ENV=production
 
 # Edit the gitlab-shell config
 # Change the "socket" option to "/usr/local/var/run/redis/redis.sock"
 # Change the "gitlab_url" option to "http://localhost:8080/"
 # Don"t bother configuring any SSL stuff in here because it"s used internally
-vi /home/git/gitlab-shell/config.yml' > /home/git/pt1.sh
+vim /home/git/gitlab-shell/config.yml' > /home/git/pt1.sh
 
 su - git -c 'sh /home/git/pt1.sh
 
@@ -127,8 +132,7 @@ bundle exec rake assets:precompile RAILS_ENV=production'
 
 service gitlab start
 
-echo '
-worker_processes  1;
+echo 'worker_processes  1;
 events {
     worker_connections  1024;
 }
@@ -161,9 +165,7 @@ http {
             proxy_pass         http://127.0.0.1:8080;
         }
     }
-}
-' > /usr/local/etc/nginx/nginx.conf
-
+}' > /usr/local/etc/nginx/nginx.conf
 service nginx restart
 
 su - git -c 'cd /home/git/gitlab
