@@ -63,8 +63,8 @@ fi
 #}}}
 
 # Set env variables {{{
-export EDITOR=vim
-export VISUAL=vim
+export EDITOR='vim -p'
+export VISUAL='vim -p'
 export SHELL=`which zsh`
 if [ $platform == 'FreeBSD' ]; then
 export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
