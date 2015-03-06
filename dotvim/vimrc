@@ -51,6 +51,7 @@ call vundle#rc()
 	Bundle 'vim-pandoc/vim-pandoc-syntax'
 	Bundle 'vim-pandoc/vim-pandoc-after'
 	Bundle 'mwpher/vim-snippets'
+	Bundle 'dbext.vim'
 if iCanHazVundle == 0
 	echo "Installing Bundles, please ignore key map error messages"
 	echo ""
@@ -397,9 +398,12 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 
 " Pandoc settings {{{
-let g:pandoc#filetypes#pandoc_markdown = 0
+"let g:pandoc#filetypes#pandoc_markdown = 0
 let g:pandoc#formatting#mode = 'ha'
 let g:pandoc#syntax#conceal#use = 0
 let g:pandoc#after#modules#enabled = ["snipmate"]
 let g:pandoc#keyboard#sections#header_style = "s"
 "}}}
+
+" Clear search with Ctrl-C
+nnoremap <C-c> :let @/ = ""<return>

@@ -17,3 +17,8 @@ ruleset
 postgresql
 postgres
 bacula
+freebsd
+openbsd
+backend
+userID
+timerec
