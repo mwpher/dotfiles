@@ -97,6 +97,9 @@ alias ga='git add'
 alias gc='git commit'
 alias gp='git push'
 
+alias salt-ssh='salt-ssh -c /home/matt/salt'
+alias ss='salt-ssh -c /home/matt/salt'
+
 pipupgrade() { 
 	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
 	sudo pip install -U `cat ./.piptmp`;
