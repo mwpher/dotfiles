@@ -52,6 +52,8 @@ call vundle#rc()
 	Bundle 'vim-pandoc/vim-pandoc-after'
 	Bundle 'mwpher/vim-snippets'
 	Bundle 'dbext.vim'
+	Bundle 'saltstack/salt-vim'
+	Bundle 'mitsuhiko/vim-jinja'
 if iCanHazVundle == 0
 	echo "Installing Bundles, please ignore key map error messages"
 	echo ""

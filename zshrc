@@ -95,10 +95,12 @@ alias apv='ansible-playbook -vvv'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gcm='git commit -m'
 alias gp='git push'
+alias gd='git diff'
 
-alias salt-ssh='salt-ssh -c /home/matt/salt'
 alias ss='salt-ssh -c /home/matt/salt'
+alias ssa='salt-ssh -c /home/matt/salt "*"'
 
 pipupgrade() { 
 	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
