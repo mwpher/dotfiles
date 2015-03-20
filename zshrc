@@ -101,6 +101,7 @@ alias gd='git diff'
 
 alias ss='salt-ssh -c /home/matt/salt'
 alias ssa='salt-ssh -c /home/matt/salt "*"'
+alias sss='salt-ssh -c /home/matt/salt "*" state.highstate'
 
 pipupgrade() { 
 	pip freeze --local | grep -v \'^\-e\' | cut -d = -f 1 > ./.piptmp;
