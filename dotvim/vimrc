@@ -207,6 +207,9 @@ au BufRead,BufNewFile *.yml set expandtab tabstop=2 shiftwidth=2
 
 " Python
 au BufRead,BufNewFile *.py set expandtab tabstop=2 shiftwidth=2
+
+" Salt
+au BufRead,BufNewFile *.sls set filetype=sls
 " }}}
 
 " Automatically set working directory
@@ -372,6 +375,9 @@ let g:airline#extensions#syntastic#enabled = 1
 " }}}
 
 " SnipMate settings
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+let g:snipMate.snippet_version = 1
 let g:snips_author = "Matthew Pherigo"
 let g:snips_email = "hybrid120@gmail.com"
 let g:snips_github = "github.com/mwpher"
