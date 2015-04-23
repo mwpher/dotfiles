@@ -415,3 +415,5 @@ let g:pandoc#keyboard#sections#header_style = "s"
 
 " Clear search with Ctrl-C
 nnoremap <C-c> :let @/ = ""<return>
+
+map <leader>p :set paste!<CR>
