@@ -138,5 +138,12 @@ if which tmux 2>&1 >/dev/null; then
 fi
 # }}}
 
+# virtualenvwrapper {{{
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/Devel
+source /usr/local/bin/virtualenvwrapper.sh
+# }}}
+# }}}
+
 if [ -x /usr/games/fortune/freebsd-tips ] ; then \
 			/usr/games/fortune/freebsd-tips ; fi
