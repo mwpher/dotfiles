@@ -1,0 +1,20 @@
+$RECYCLE.BIN
+_-Camtasia Captures Temp-_
+ansible-stuff
+archive.tgz
+BTsync
+cygwin64
+DBBackup
+dotfiles
+Dropbox (Personal)
+Dropbox (Jupiter Broadcasting)
+hardinfo_report.html
+ISOs
+linux-firmware-20131013.7d0c7a8-1-any.pkg.tar.xz
+msdownld.tmp
+puppet
+puppet.tar.gz
+r8168-8.037.00
+r8168-all
+Steam
+System Volume Information
