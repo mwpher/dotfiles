@@ -10,7 +10,7 @@ import re
 
 vidDict = {}
 
-with open('/Users/matthewpherigo/GameGrumps/playlists.txt', 'r') as dllist:
+with open('playlists.txt', 'r') as dllist:
     for line in dllist:
         print("\n")
         if re.match(r'(^\s*$|^#)', line):
@@ -20,7 +20,7 @@ with open('/Users/matthewpherigo/GameGrumps/playlists.txt', 'r') as dllist:
         print('playlist is ', playlist.get('title'))
         for vid in playlist['items']:              # Get pafy object
             vid = vid.get('pafy')
-#            print(vid.title + ' was published on ' + vid.published)
+            print(vid.title + ' was published on ' + vid.published)
             vidDict[vid] = datetime.datetime.strptime(vid.published, '%Y-%m-%d %H:%M:%S')
         time.sleep(10)
 
@@ -28,8 +28,9 @@ with open('/Users/matthewpherigo/GameGrumps/playlists.txt', 'r') as dllist:
 # Let's sort that!
 sorted_vidDict = sorted(vidDict.items(), key=operator.itemgetter(1))
 
-with open('/Users/matthewpherigo/GameGrumps/vids-chrono.txt', 'w') as vidjar:
-    pickle.dump(sorted_vidDict, vidjar, 4)
+with open('vids-chrono.txt', 'w') as vidjar:
+  for v in sorted_vidDict:
+    vidjar.write(v.)
 
     #pickle.dump(sorted_vidDict, vidjar)
 
