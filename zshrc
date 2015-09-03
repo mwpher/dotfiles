@@ -7,6 +7,9 @@ export SAVEHIST=$HISTSIZE
 setopt autocd
 export KEYTIMEOUT=1
 
+export TERM=screen
+
+
 # Vim mode {{{
 zle-keymap-select () {
     if [ $TERM = "rxvt-256color" ]; then
@@ -71,6 +74,8 @@ export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
 export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
 fi
+export hlainc=/usr/local/include/hla
+export hlalib=/usr/local/lib/hlalib.c
 # }}}
 
 ## Safety features ## {{{
