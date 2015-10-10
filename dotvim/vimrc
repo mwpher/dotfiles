@@ -416,4 +416,8 @@ let g:pandoc#keyboard#sections#header_style = "s"
 " Clear search with Ctrl-C
 nnoremap <C-c> :let @/ = ""<return>
 
+" Toggle paste mode with leader-p
 map <leader>p :set paste!<CR>
+
+" Automatically open all folds
+au BufRead * normal zR
