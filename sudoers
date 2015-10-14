@@ -2,19 +2,24 @@
 
 # Setup sudoreplay
 Defaults log_output
+Defaults logfile=/var/log/sudo.log
 Defaults!/usr/bin/sudoreplay !log_output
 Defaults!/usr/local/bin/sudoreplay !log_output
 Defaults!/sbin/reboot !log_output
+# DON'T FORGET ROTATION OF SUDO.LOG
+# put in /etc/newsyslog.conf:
+#/var/log/sudo.log 	root:wheel 	600  10	   100	*     JC
 
-# make sure ansible works right
-Defaults:ansible !requiretty
-Defaults:ansible !lecture
+# set RCS name to user that called sudo
+Defaults>root    !set_logname
 
+# Default Preferences
 root ALL=(ALL) ALL
 
-#%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) ALL
 
-%wheel ALL=(ALL) NOPASSWD: ALL
+# Insecure but nice for my hands.
+matt ALL=(ALL) NOPASSWD: ALL
 
 #emergency backup
 {{ periodic_user }} ALL=(ALL) /usr/local/sbin/visudo
