@@ -73,9 +73,9 @@ if [ $platform == 'FreeBSD' ]; then
 export C_INCLUDE_PATH=/usr/local/include/:${C_INCLUDE_PATH}
 export LIBRARY_PATH=/usr/local/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}
-fi
 export hlainc=/usr/local/include/hla
 export hlalib=/usr/local/lib/hlalib.c
+fi
 # }}}
 
 ## Safety features ## {{{
