@@ -1,14 +1,13 @@
-# {{ ansible_managed }}
+# $Id$
 
 # Setup sudoreplay
-Defaults log_output
+Defaults log_output # Not on OpenBSD
 Defaults logfile=/var/log/sudo.log
 Defaults!/usr/bin/sudoreplay !log_output
 Defaults!/usr/local/bin/sudoreplay !log_output
 Defaults!/sbin/reboot !log_output
 # DON'T FORGET ROTATION OF SUDO.LOG
 # put in /etc/newsyslog.conf:
-#/var/log/sudo.log 	root:wheel 	600  10	   100	*     JC
 
 # set RCS name to user that called sudo
 Defaults>root    !set_logname
@@ -16,14 +15,24 @@ Defaults>root    !set_logname
 # Default Preferences
 root ALL=(ALL) ALL
 
-%wheel ALL=(ALL) ALL
+%wheel ALL=(ALL) SETENV: ALL
+
+## OpenBSD defaults
+#Defaults env_keep +="FTPMODE PKG_CACHE PKG_PATH SM_PATH SSH_AUTH_SOCK"
+## Non-exhaustive list of variables needed to build release(8) and ports(7)
+#Defaults:%wsrc env_keep +="DESTDIR DISTDIR FETCH_CMD FLAVOR GROUP MAKE MAKECONF"
+#Defaults:%wsrc env_keep +="MULTI_PACKAGES NOMAN OKAY_FILES OWNER PKG_DBDIR"
+#Defaults:%wsrc env_keep +="PKG_DESTDIR PKG_TMPDIR PORTSDIR RELEASEDIR SHARED_ONLY"
+#Defaults:%wsrc env_keep +="SUBPACKAGE WRKOBJDIR SUDO_PORT_V1"
 
 # Insecure but nice for my hands.
-matt ALL=(ALL) NOPASSWD: ALL
-
-#emergency backup
-{{ periodic_user }} ALL=(ALL) /usr/local/sbin/visudo
+matt ALL=(ALL) NOPASSWD: SETENV: ALL
 
 ## Read drop-in files from /usr/local/etc/sudoers.d
 ## (the '#' here does not indicate a comment)
+## FreeBSD:
 #includedir /usr/local/etc/sudoers.d
+## OpenBSD:
+#includedir /usr/local/etc/sudoers.d
+
+# $Log$
