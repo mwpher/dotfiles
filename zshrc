@@ -7,7 +7,7 @@ export SAVEHIST=$HISTSIZE
 setopt autocd
 export KEYTIMEOUT=1
 
-export TERM=screen
+#export TERM=screen-256color
 
 
 # Vim mode {{{
